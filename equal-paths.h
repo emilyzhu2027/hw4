@@ -29,4 +29,8 @@ struct Node {
  */
 bool equalPaths(Node * root);
 
+bool isLeaf(Node* node);
+int height(Node *root);
+int maxHeight(Node * node);
+
 #endif
