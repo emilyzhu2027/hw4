@@ -612,6 +612,9 @@ template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::clear()
 {
     // TODO
+    if (root_ == NULL){
+        return;
+    }
     deleteNodes(root_);
     root_ = NULL;
 }
