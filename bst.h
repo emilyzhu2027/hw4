@@ -472,28 +472,35 @@ void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &key
         return;
     }
 
-    Node<Key, Value>* curr_temp_node = root_;
+    if (internalFind(keyValuePair.first)){
+        Node<Key, Value>* c = internalFind(keyValuePair.first);
+        c->setValue(keyValuePair.second);
+    }
 
-    while (curr_temp_node != NULL){
-        if (keyValuePair.first < curr_temp_node->getKey()){
-            if (curr_temp_node->getLeft() == NULL){
-                Node<Key, Value>* new_node = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, curr_temp_node);
-                curr_temp_node->setLeft(new_node);
+    else{
+        Node<Key, Value>* curr_temp_node = root_;
+
+        while (curr_temp_node != NULL){
+            if (keyValuePair.first < curr_temp_node->getKey()){
+                if (curr_temp_node->getLeft() == NULL){
+                    Node<Key, Value>* new_node = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, curr_temp_node);
+                    curr_temp_node->setLeft(new_node);
+                    return;
+                }
+                curr_temp_node = curr_temp_node->getLeft();
+            }
+            else if (keyValuePair.first > curr_temp_node->getKey()){
+                if (curr_temp_node->getRight() == NULL){
+                    Node<Key, Value>* new_node = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, curr_temp_node);
+                    curr_temp_node->setRight(new_node);
+                    return;
+                }
+                curr_temp_node = curr_temp_node->getRight();
+            }
+            else{
+                curr_temp_node->setValue(keyValuePair.second);
                 return;
             }
-            curr_temp_node = curr_temp_node->getLeft();
-        }
-        else if (keyValuePair.first > curr_temp_node->getKey()){
-            if (curr_temp_node->getRight() == NULL){
-                Node<Key, Value>* new_node = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, curr_temp_node);
-                curr_temp_node->setRight(new_node);
-                return;
-            }
-            curr_temp_node = curr_temp_node->getRight();
-        }
-        else{
-            curr_temp_node->setValue(keyValuePair.second);
-            return;
         }
     }
 }
