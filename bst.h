@@ -555,6 +555,8 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
             nodeToReplace->getParent()->setRight(child);
         }
     }
+
+    delete nodeToReplace;
 }
 
 
