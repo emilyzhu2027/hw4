@@ -27,22 +27,24 @@ int main(int argc, char *argv[])
     bt.remove('b');
 
     // AVL Tree Tests
-    AVLTree<char,int> at;
-    at.insert(std::make_pair('a',1));
-    at.insert(std::make_pair('b',2));
+    AVLTree<std::string, std::string> at;
+
+    at.insert(std::make_pair("Hello World", "!!!"));
 
     cout << "\nAVLTree contents:" << endl;
-    for(AVLTree<char,int>::iterator it = at.begin(); it != at.end(); ++it) {
+    for(AVLTree<std::string,std::string>::iterator it = at.begin(); it != at.end(); ++it) {
         cout << it->first << " " << it->second << endl;
     }
-    if(at.find('b') != at.end()) {
+
+    
+    if(at.find("Hello World") != at.end()) {
         cout << "Found b" << endl;
     }
     else {
         cout << "Did not find b" << endl;
     }
     cout << "Erasing b" << endl;
-    at.remove('b');
+    at.remove("Hello World");
 
     return 0;
 }
